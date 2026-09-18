@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>And Now We're Here</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --cream: #f7f3ed;
+            --paper: #fcfaf7;
+
+            --text: #292521;
+            --muted: #8c837b;
+
+            --accent: #a56f61;
+            --accent-light: #d9b6aa;
+
+            --border: #ddd4cb;
+
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+        }
+
+
+        /* =========================================
+           RESET
+        ========================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            background: var(--cream);
+
+            color: var(--text);
+
+            font-family: var(--sans);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================== */
+
+        .page {
+            position: relative;
+
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(216, 185, 174, .28),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(205, 191, 169, .22),
+                    transparent 35%
+                ),
+                var(--cream);
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================== */
+
+        .glow {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            filter: blur(110px);
+
+            opacity: .25;
+
+            pointer-events: none;
+        }
+
+
+        .glow-one {
+            top: -300px;
+            left: -250px;
+
+            background: #dfc1b6;
+        }
+
+
+        .glow-two {
+            right: -300px;
+            bottom: -300px;
+
+            background: #d6c5ad;
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================== */
+
+        .content {
+            position: relative;
+            z-index: 5;
+
+            width: min(850px, 90%);
+
+            text-align: center;
+
+            animation: contentEnter 1.3s
+                cubic-bezier(.2,.8,.2,1)
+                both;
+        }
+
+
+        /* =========================================
+           TOP
+        ========================================== */
+
+        .heart {
+            font-family: var(--serif);
+
+            font-size: 38px;
+
+            color: var(--accent);
+
+            margin-bottom: 25px;
+
+            animation:
+                heartAppear 1.5s
+                ease both;
+        }
+
+
+        .eyebrow {
+            font-size: 9px;
+
+            font-weight: 600;
+
+            letter-spacing: .25em;
+
+            text-transform: uppercase;
+
+            color: var(--muted);
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================================
+           HEADING
+        ========================================== */
+
+        h1 {
+            font-family: var(--serif);
+
+            font-weight: 400;
+
+            font-size: clamp(
+                55px,
+                9vw,
+                105px
+            );
+
+            line-height: .9;
+
+            letter-spacing: -.055em;
+        }
+
+
+        h1 em {
+            font-style: italic;
+
+            color: var(--accent);
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================== */
+
+        .message {
+            max-width: 520px;
+
+            margin: 38px auto 0;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.75;
+        }
+
+
+        .message strong {
+            color: var(--text);
+
+            font-weight: 500;
+        }
+
+
+        /* =========================================
+           TIMER
+        ========================================== */
+
+        .timer-wrapper {
+            margin: 60px auto 0;
+
+            width: min(650px, 100%);
+        }
+
+
+        .timer-label {
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .22em;
+
+            color: #aaa097;
+
+            margin-bottom: 20px;
+        }
+
+
+        .timer {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+        }
+
+
+        .time-unit {
+            min-width: 105px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+        }
+
+
+        .time-number {
+            font-family: var(--serif);
+
+            font-size: clamp(
+                40px,
+                6vw,
+                62px
+            );
+
+            line-height: 1;
+
+            letter-spacing: -.045em;
+
+            font-variant-numeric: tabular-nums;
+        }
+
+
+        .time-label {
+            margin-top: 10px;
+
+            font-size: 8px;
+
+            letter-spacing: .2em;
+
+            color: #aaa097;
+        }
+
+
+        .colon {
+            align-self: flex-start;
+
+            margin-top: 7px;
+
+            font-family: var(--serif);
+
+            font-size: 30px;
+
+            color: var(--accent-light);
+        }
+
+
+        /* =========================================
+           START DATE
+        ========================================== */
+
+        .started {
+            margin-top: 30px;
+
+            color: #aaa097;
+
+            font-size: 10px;
+
+            letter-spacing: .08em;
+        }
+
+
+        .started span {
+            color: var(--accent);
+
+            font-weight: 500;
+        }
+
+
+        /* =========================================
+           DIVIDER
+        ========================================== */
+
+        .divider {
+            width: 45px;
+
+            height: 1px;
+
+            background: var(--border);
+
+            margin: 42px auto 25px;
+        }
+
+
+        /* =========================================
+           FINAL LINE
+        ========================================== */
+
+        .final-line {
+            font-family: var(--serif);
+
+            font-size: 19px;
+
+            color: var(--text);
+
+            line-height: 1.5;
+        }
+
+
+        .final-line em {
+            color: var(--accent);
+
+            font-style: italic;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            z-index: 5;
+
+            color: #aaa097;
+
+            font-size: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .2em;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================
+           ANIMATIONS
+        ========================================== */
+
+        @keyframes contentEnter {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes heartAppear {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    scale(.7);
+            }
+
+            60% {
+                opacity: 1;
+
+                transform:
+                    scale(1.08);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                overflow: auto;
+            }
+
+
+            .page {
+                min-height: 100svh;
+
+                padding:
+                    70px
+                    20px
+                    70px;
+            }
+
+
+            .heart {
+                font-size: 34px;
+
+                margin-bottom: 20px;
+            }
+
+
+            .eyebrow {
+                font-size: 8px;
+
+                margin-bottom: 25px;
+            }
+
+
+            h1 {
+                font-size:
+                    clamp(
+                        50px,
+                        15vw,
+                        75px
+                    );
+            }
+
+
+            .message {
+                margin-top: 30px;
+
+                font-size: 14px;
+
+                line-height: 1.7;
+            }
+
+
+            .timer-wrapper {
+                margin-top: 45px;
+            }
+
+
+            .timer {
+                gap: 5px;
+            }
+
+
+            .time-unit {
+                min-width: 65px;
+            }
+
+
+            .time-number {
+                font-size: 38px;
+            }
+
+
+            .time-label {
+                font-size: 7px;
+
+                margin-top: 8px;
+            }
+
+
+            .colon {
+                font-size: 22px;
+
+                margin-top: 5px;
+            }
+
+
+            .started {
+                margin-top: 25px;
+
+                font-size: 8px;
+            }
+
+
+            .divider {
+                margin-top: 32px;
+
+                margin-bottom: 20px;
+            }
+
+
+            .final-line {
+                font-size: 17px;
+            }
+
+
+            .footer {
+                bottom: 18px;
+
+                font-size: 7px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <main class="page">
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+
+
+        <section class="content">
+
+            <div class="heart">
+                ♡
+            </div>
+
+
+            <p class="eyebrow">
+                JUNE 18, 2026 · 20:48
+            </p>
+
+
+            <h1>
+                And now<br>
+                <em>we're here.</em>
+            </h1>
+
+
+            <p class="message">
+                I started this by taking you back to
+                <strong>before I met you.</strong>
+                <br><br>
+                But honestly, I think I like where
+                the story ended up a lot more.
+            </p>
+
+
+            <!-- TIMER -->
+
+            <div class="timer-wrapper">
+
+                <p class="timer-label">
+                    We've been us for
+                </p>
+
+
+                <div class="timer">
+
+                    <div class="time-unit">
+
+                        <span
+                            id="days"
+                            class="time-number"
+                        >
+                            000
+                        </span>
+
+                        <span class="time-label">
+                            DAYS
+                        </span>
+
+                    </div>
+
+
+                    <span class="colon">
+                        :
+                    </span>
+
+
+                    <div class="time-unit">
+
+                        <span
+                            id="hours"
+                            class="time-number"
+                        >
+                            00
+                        </span>
+
+                        <span class="time-label">
+                            HOURS
+                        </span>
+
+                    </div>
+
+
+                    <span class="colon">
+                        :
+                    </span>
+
+
+                    <div class="time-unit">
+
+                        <span
+                            id="minutes"
+                            class="time-number"
+                        >
+                            00
+                        </span>
+
+                        <span class="time-label">
+                            MINUTES
+                        </span>
+
+                    </div>
+
+
+                    <span class="colon">
+                        :
+                    </span>
+
+
+                    <div class="time-unit">
+
+                        <span
+                            id="seconds"
+                            class="time-number"
+                        >
+                            00
+                        </span>
+
+                        <span class="time-label">
+                            SECONDS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="started">
+                    Since
+                    <span>
+                        June 18, 2026 at 8:48 PM
+                    </span>
+                </p>
+
+            </div>
+
+
+            <div class="divider"></div>
+
+
+            <p class="final-line">
+                And I'm pretty happy
+                <em>this is where we are.</em>
+            </p>
+
+        </section>
+
+
+        <div class="footer">
+            Four months · and counting ♡
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /*
+            =========================================
+            RELATIONSHIP START
+            =========================================
+
+            June 18, 2026 at 20:48
+
+            This uses the user's local time.
+        */
+
+        const relationshipStart =
+            new Date(
+                2026,
+                5,       // June
+                18,
+                20,      // 8 PM
+                48,      // 48 minutes
+                0
+            );
+
+
+        /*
+            =========================================
+            TIMER
+        =========================================
+        */
+
+        function updateTimer() {
+
+            const now = new Date();
+
+            let difference =
+                now.getTime() -
+                relationshipStart.getTime();
+
+
+            /*
+                Prevent negative numbers if the
+                page is opened before the start time.
+            */
+
+            if (difference < 0) {
+
+                difference = 0;
+
+            }
+
+
+            const totalSeconds =
+                Math.floor(
+                    difference / 1000
+                );
+
+
+            const days =
+                Math.floor(
+                    totalSeconds / 86400
+                );
+
+
+            const hours =
+                Math.floor(
+                    (totalSeconds % 86400) / 3600
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (totalSeconds % 3600) / 60
+                );
+
+
+            const seconds =
+                totalSeconds % 60;
+
+
+            /*
+                Update display
+            */
+
+            document.getElementById("days")
+                .textContent =
+                String(days).padStart(3, "0");
+
+
+            document.getElementById("hours")
+                .textContent =
+                String(hours).padStart(2, "0");
+
+
+            document.getElementById("minutes")
+                .textContent =
+                String(minutes).padStart(2, "0");
+
+
+            document.getElementById("seconds")
+                .textContent =
+                String(seconds).padStart(2, "0");
+
+        }
+
+
+        /*
+            Run immediately so there isn't
+            a one-second delay when loading.
+        */
+
+        updateTimer();
+
+
+        /*
+            Keep it live.
+        */
+
+        setInterval(
+            updateTimer,
+            1000
+        );
+
+    </script>
+
+</body>
+</html>

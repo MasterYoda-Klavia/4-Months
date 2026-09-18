@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Four Months Ago...</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         INTRO / MAIN PAGE
+    ========================================== -->
+
+    <main id="intro" class="intro-page">
+
+        <div class="intro-glow glow-1"></div>
+        <div class="intro-glow glow-2"></div>
+
+        <div class="intro-content">
+
+            <div class="tiny-heart">♡</div>
+
+            <p class="eyebrow">
+                A LITTLE SOMETHING FOR YOU
+            </p>
+
+            <h1>
+                Four months<br>
+                <em>ago...</em>
+            </h1>
+
+            <p class="intro-subtitle">
+                I wanted to take you back to the beginning.
+            </p>
+
+            <button id="startButton" class="main-button">
+                <span>Let's go back</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+        </div>
+
+        <div class="intro-footer">
+            <span>Made for you</span>
+            <span>♡</span>
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         STORY
+    ========================================== -->
+
+    <main id="story" class="story-page hidden">
+
+        <!-- Progress -->
+        <div class="story-progress">
+            <div id="progressBar"></div>
+        </div>
+
+        <div class="frame-counter">
+            <span id="frameNumber">01</span>
+            <span>/</span>
+            <span>19</span>
+        </div>
+
+
+        <!-- Frame content gets generated here -->
+        <section id="frame" class="frame">
+
+            <div id="frameText" class="frame-text"></div>
+
+            <div id="photoArea" class="photo-area"></div>
+
+        </section>
+
+
+        <!-- Navigation -->
+        <div class="navigation">
+
+            <button id="nextButton" class="next-button">
+                <span>Continue</span>
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
